@@ -25,7 +25,7 @@ RUN chmod +x $FETCH
 # Make sure apt-get is up to date and dependent packages are installed
 RUN \
   apt-get update && \
-  apt-get install -y automake autogen build-essential ca-certificates                    \
+  apt-get install -y automake autogen build-essential ca-certificates cmake              \
     gcc-5-arm-linux-gnueabi g++-5-arm-linux-gnueabi libc6-dev-armel-cross                \
     gcc-5-arm-linux-gnueabihf g++-5-arm-linux-gnueabihf libc6-dev-armhf-cross            \
     gcc-5-aarch64-linux-gnu g++-5-aarch64-linux-gnu libc6-dev-arm64-cross                \
@@ -71,7 +71,7 @@ ENV UPDATE_IOS /update_ios.sh
 RUN chmod +x $UPDATE_IOS
 
 RUN \
-  IOS_SDK_PATH=https://sdks.website/dl/iPhoneOS9.3.sdk.tbz2     && \
+  IOS_SDK_PATH=https://raw.githubusercontent.com/Sn0wCooder/theos-sdks/master/iPhoneOS9.3.sdk.tbz2     && \
   $FETCH $IOS_SDK_PATH db5ecf91617abf26d3db99e769bd655b943905e5 && \
   mv `basename $IOS_SDK_PATH` iPhoneOS9.3.sdk.tar.bz2           && \
   $UPDATE_IOS /iPhoneOS9.3.sdk.tar.bz2                          && \
