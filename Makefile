@@ -10,8 +10,12 @@ PLATFORMS = \
 	1.9.0 \
 	1.9.1 \
 	1.9.2 \
-	1.9.x #\
-	#latest
+	1.9.3 \
+	1.9.4 \
+	1.9.x \
+	1.10 \
+	1.10.x \
+	latest
 
 .PHONY: $(PLATFORMS)
 
@@ -26,11 +30,10 @@ push-all:
 	done
 
 base:
-	$(DOCKER) build -t $(IMAGE)-base docker/base/
+	$(DOCKER) build -t $(PROJECT)/$(IMAGE)-base docker/base/
 
 $(PLATFORMS): base
-	$(DOCKER) build -t $(IMAGE)-$@ docker/go-$@;
+	$(DOCKER) build -t $(PROJECT)/$(IMAGE)-$@ docker/go-$@;
 
 push:
-	docker tag xgo-$(PLATFORM) $(PROJECT)/xgo-$(PLATFORM)
-	docker push $(PROJECT)/xgo-$(PLATFORM)
+	docker push $(PROJECT)/$(IMAGE)-$(PLATFORM)

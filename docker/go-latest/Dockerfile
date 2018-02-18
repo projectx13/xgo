@@ -3,6 +3,6 @@
 #
 # Released under the MIT license.
 
-FROM elgatito/xgo-1.9.x
+FROM elgatito/xgo-1.10.x
 
 MAINTAINER Péter Szilágyi <peterke@gmail.com>
