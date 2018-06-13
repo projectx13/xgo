@@ -7,13 +7,6 @@ DOCKER = docker
 
 # Platforms on which we want to build the project.
 PLATFORMS = \
-	1.9.0 \
-	1.9.1 \
-	1.9.2 \
-	1.9.3 \
-	1.9.4 \
-	1.9.5 \
-	1.9.x \
 	1.10 \
 	1.10.1 \
 	1.10.2 \
