@@ -519,6 +519,7 @@ for TARGET in $TARGETS; do
       if [ -d "$IOS_NDK_ARM_7" ] && ([ $XGOARCH == "." ] || [ $XGOARCH == "arm-7" ] || [ $XGOARCH == "framework" ]); then
         echo "Bootstrapping ios-$PLATFORM/arm-7..."
         export PATH=$IOS_NDK_ARM_7/bin:$PATH
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$IOS_NDK_ARM_7/lib/
         GOOS=darwin GOARCH=arm GOARM=7 CGO_ENABLED=1 CC=arm-apple-darwin11-clang go install --tags ios std
 
         echo "Compiling for ios-$PLATFORM/arm-7..."
@@ -536,6 +537,7 @@ for TARGET in $TARGETS; do
       if [ -d "$IOS_NDK_ARM64" ] && ([ $XGOARCH == "." ] || [ $XGOARCH == "arm64" ] || [ $XGOARCH == "framework" ]); then
         echo "Bootstrapping ios-$PLATFORM/arm64..."
         export PATH=$IOS_NDK_ARM64/bin:$PATH
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$IOS_NDK_ARM64/lib/
         GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CC=arm-apple-darwin11-clang go install --tags ios std
 
         echo "Compiling for ios-$PLATFORM/arm64..."
