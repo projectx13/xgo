@@ -1,4 +1,4 @@
-# Go cross compiler (xgo): Go 1.10.3
+# Go cross compiler (xgo): Go 1.10
 # Copyright (c) 2017 Péter Szilágyi. All rights reserved.
 #
 # Released under the MIT license.
@@ -8,10 +8,10 @@ FROM elgatito/xgo-base
 MAINTAINER Péter Szilágyi <peterke@gmail.com>
 
 # Configure the root Go distribution and bootstrap based on it
-ENV GO_VERSION 1103
+ENV GO_VERSION 1110
 
 RUN \
-  export ROOT_DIST=https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz     && \
-  export ROOT_DIST_SHA=fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035 && \
+  export ROOT_DIST=https://dl.google.com/go/go1.11.linux-amd64.tar.gz     && \
+  export ROOT_DIST_SHA=b3fcf280ff86558e0559e185b601c9eade0fd24c900b4c63cd14d1d38613e499 && \
   \
   $BOOTSTRAP_PURE
