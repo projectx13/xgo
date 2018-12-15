@@ -62,20 +62,20 @@ ADD patch.tar.xz $OSX_NDK_X86/SDK/$OSX_SDK/usr/include/c++
 ENV PATH $OSX_NDK_X86/bin:$PATH
 
 # Configure the container for iOS cross compilation
-ENV IOS_NDK_ARM_7     /usr/local/ios-ndk-arm-7
-ENV IOS_NDK_ARM64     /usr/local/ios-ndk-arm64
-ENV IOS_SIM_NDK_AMD64 /usr/local/ios-sim-ndk-amd64
+# ENV IOS_NDK_ARM_7     /usr/local/ios-ndk-arm-7
+# ENV IOS_NDK_ARM64     /usr/local/ios-ndk-arm64
+# ENV IOS_SIM_NDK_AMD64 /usr/local/ios-sim-ndk-amd64
 
-ADD update_ios.sh /update_ios.sh
-ENV UPDATE_IOS /update_ios.sh
-RUN chmod +x $UPDATE_IOS
+# ADD update_ios.sh /update_ios.sh
+# ENV UPDATE_IOS /update_ios.sh
+# RUN chmod +x $UPDATE_IOS
 
-RUN \
-  IOS_SDK_PATH=https://raw.githubusercontent.com/Sn0wCooder/theos-sdks/master/iPhoneOS9.3.sdk.tbz2     && \
-  $FETCH $IOS_SDK_PATH db5ecf91617abf26d3db99e769bd655b943905e5 && \
-  mv `basename $IOS_SDK_PATH` iPhoneOS9.3.sdk.tar.bz2           && \
-  $UPDATE_IOS /iPhoneOS9.3.sdk.tar.bz2                          && \
-  rm -rf /iPhoneOS9.3.sdk.tar.bz2
+# RUN \
+#   IOS_SDK_PATH=https://raw.githubusercontent.com/Sn0wCooder/theos-sdks/master/iPhoneOS9.3.sdk.tbz2     && \
+#   $FETCH $IOS_SDK_PATH db5ecf91617abf26d3db99e769bd655b943905e5 && \
+#   mv `basename $IOS_SDK_PATH` iPhoneOS9.3.sdk.tar.bz2           && \
+#   $UPDATE_IOS /iPhoneOS9.3.sdk.tar.bz2                          && \
+#   rm -rf /iPhoneOS9.3.sdk.tar.bz2
 
 # Configure the container for Android cross compilation
 ENV ANDROID_NDK         android-ndk-r11c
