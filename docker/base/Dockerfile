@@ -24,6 +24,7 @@ RUN chmod +x $FETCH
 
 # Make sure apt-get is up to date and dependent packages are installed
 RUN \
+  dpkg --add-architecture i386 && \
   apt-get update && \
   apt-get install -y automake autogen build-essential ca-certificates cmake              \
     gcc-5-arm-linux-gnueabi g++-5-arm-linux-gnueabi libc6-dev-armel-cross                \
@@ -36,10 +37,19 @@ RUN \
     gcc-5-multilib g++-5-multilib gcc-mingw-w64 g++-mingw-w64 clang llvm-dev             \
     libtool libxml2-dev uuid-dev libssl-dev swig openjdk-8-jdk pkg-config patch          \
     make xz-utils cpio wget zip unzip p7zip git mercurial bzr texinfo help2man           \
+    curl rsync libc6:i386 libncurses5:i386 libstdc++6:i386 \
+    libc6-dev:i386 libstdc++6:i386 libgcc1:i386 zlib1g:i386 \
     --no-install-recommends
 
 # Fix any stock package issues
 RUN ln -s /usr/include/asm-generic /usr/include/asm
+
+RUN curl -L https://github.com/raspberrypi/tools/archive/master.tar.gz | tar xz --wildcards --no-anchored "*gcc-linaro-arm-linux-gnueabihf-raspbian*" && \
+    rsync -a /tools-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/* /usr && \
+    cd /usr/bin && \
+    ls -la arm-linux-* && \
+    ln -s arm-linux-gnueabihf-gcc arm-linux-gnueabihf-cc && \
+    rm -rf /tools-master
 
 # Configure the container for OSX cross compilation
 ENV OSX_SDK     MacOSX10.11.sdk
