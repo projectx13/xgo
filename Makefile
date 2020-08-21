@@ -1,5 +1,5 @@
 # Name of the project.
-PROJECT = elgatito
+PROJECT = projectx13
 IMAGE = xgo
 
 # Set binaries and platform specific variables.
